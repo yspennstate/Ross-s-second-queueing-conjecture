@@ -15,7 +15,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Get official AAP author package
         run: |
-          git clone --depth 1 https://github.com/vtex-soft/texsupport.ims-aap.git /tmp/aap
+          git clone https://github.com/vtex-soft/texsupport.ims-aap.git /tmp/aap
+          git -C /tmp/aap checkout e8642bdd9f3b232b5f9a0c05b8052c90b0ecdf55
           mkdir -p author-package
           cp /tmp/aap/imsart.cls /tmp/aap/imsart.sty /tmp/aap/aap-template.tex author-package/
           git -C /tmp/aap rev-parse HEAD > author-package/UPSTREAM_COMMIT.txt
@@ -31,12 +32,20 @@ jobs:
           python3 verify.py
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eq 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references' main.log; then exit 1; fi
           mkdir -p paper
           cp main.pdf paper/Shmalo_Ross_Second_Conjecture.pdf
+          python3 - <<'PY'
+          import zipfile
+          from pathlib import Path
+          with zipfile.ZipFile('paper/Shmalo_Ross_AAP_Source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in ['main.tex','verify.py','checks.json','imsart.cls','imsart.sty']:
+                  z.write(name,name)
+          PY
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add paper/Shmalo_Ross_Second_Conjecture.pdf checks.json
-          git diff --cached --quiet || git commit -m 'Build verified manuscript PDF'
+          git add paper/Shmalo_Ross_Second_Conjecture.pdf paper/Shmalo_Ross_AAP_Source.zip checks.json
+          git diff --cached --quiet || git commit -m 'Build verified manuscript PDF and matching source package'
           git pull --rebase
           git push
       - uses: actions/upload-artifact@v4
@@ -45,5 +54,7 @@ jobs:
           path: |
             author-package/
             paper/
+            main.tex
+            verify.py
             checks.json
             main.log
