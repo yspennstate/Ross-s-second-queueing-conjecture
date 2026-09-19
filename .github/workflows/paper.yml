@@ -1,0 +1,49 @@
+name: Build paper
+on:
+  push:
+    paths:
+      - '**.tex'
+      - '**.py'
+      - '.github/workflows/paper.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get official AAP author package
+        run: |
+          git clone --depth 1 https://github.com/vtex-soft/texsupport.ims-aap.git /tmp/aap
+          mkdir -p author-package
+          cp /tmp/aap/imsart.cls /tmp/aap/imsart.sty /tmp/aap/aap-template.tex author-package/
+          git -C /tmp/aap rev-parse HEAD > author-package/UPSTREAM_COMMIT.txt
+      - name: Install LaTeX
+        if: ${{ hashFiles('main.tex') != '' }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended
+      - name: Verify and compile
+        if: ${{ hashFiles('main.tex') != '' }}
+        run: |
+          cp author-package/imsart.cls author-package/imsart.sty .
+          python3 verify.py
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          mkdir -p paper
+          cp main.pdf paper/Shmalo_Ross_Second_Conjecture.pdf
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add paper/Shmalo_Ross_Second_Conjecture.pdf checks.json
+          git diff --cached --quiet || git commit -m 'Build verified manuscript PDF'
+          git pull --rebase
+          git push
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paper-and-author-package
+          path: |
+            author-package/
+            paper/
+            checks.json
+            main.log
