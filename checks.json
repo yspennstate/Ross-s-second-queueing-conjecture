@@ -1,0 +1,131 @@
+{
+  "paper": "Finite-state counterexamples to Ross's second queueing conjecture",
+  "scope": "Finite arithmetic and regression checks; analytic proofs are in main.tex",
+  "exact_constants": {
+    "analytic_inputs": [
+      "3 < pi < 22/7",
+      "sin(x) <= x",
+      "cos(x) >= 1-x^2/2",
+      "exp(-x) >= 1-x for x>=0",
+      "0 <= 1-exp(-x) <= x for x>=0",
+      "tan(x)<2x on (0,pi/4); tan(x)>x on (0,pi/2)"
+    ],
+    "damping_64_upper_bound": {
+      "numerator": 10192775,
+      "denominator": 205273088,
+      "value": "10192775/205273088"
+    },
+    "endpoint_gap_lower_bound": {
+      "numerator": 363599,
+      "denominator": 115776720,
+      "value": "363599/115776720"
+    },
+    "normalized_64_workload_gap_lower_bound": {
+      "numerator": 5879,
+      "denominator": 3500000,
+      "value": "5879/3500000"
+    },
+    "normalized_64_claimed_bound": {
+      "numerator": 1,
+      "denominator": 600,
+      "value": "1/600"
+    },
+    "damping_128_upper_bound": {
+      "numerator": 31858836659,
+      "denominator": 641478400000,
+      "value": "31858836659/641478400000"
+    },
+    "telegraph_gap_loss_upper_bound": {
+      "numerator": 121,
+      "denominator": 2100000,
+      "value": "121/2100000"
+    },
+    "normalized_128_remainder_upper_bound": {
+      "numerator": 30001,
+      "denominator": 47997600,
+      "value": "30001/47997600"
+    },
+    "normalized_128_workload_gap_lower_bound": {
+      "numerator": 1663,
+      "denominator": 700000,
+      "value": "1663/700000"
+    },
+    "normalized_128_claimed_bound": {
+      "numerator": 1,
+      "denominator": 500,
+      "value": "1/500"
+    },
+    "many_reversals_constant": {
+      "numerator": 275899,
+      "denominator": 21000000,
+      "value": "275899/21000000"
+    },
+    "many_reversals_claimed_constant": {
+      "numerator": 1,
+      "denominator": 100,
+      "value": "1/100"
+    },
+    "waiting_gap_64_coefficient": {
+      "numerator": 1,
+      "denominator": 1200,
+      "value": "1/1200"
+    },
+    "waiting_gap_128_coefficient": {
+      "numerator": 1,
+      "denominator": 1500,
+      "value": "1/1500"
+    }
+  },
+  "marked_insertion_tests": {
+    "scope": "finite-grid regression, not the general proof",
+    "configurations": 16384,
+    "single_insertion_comparisons": 86016,
+    "ages": [
+      "1/4",
+      "1/2",
+      "3/4",
+      "1",
+      "5/4",
+      "3/2",
+      "2"
+    ],
+    "service_marks": [
+      "1/2",
+      "1",
+      "3/2"
+    ],
+    "status": "PASS"
+  },
+  "two_arrival_kernel_tests": {
+    "point_comparisons": 51,
+    "rational_separations": [
+      "0",
+      "1/4",
+      "1/2",
+      "9/10",
+      "1",
+      "5/4",
+      "2"
+    ],
+    "status": "PASS"
+  },
+  "floating_point_diagnostics": {
+    "scope": "floating-point diagnostics, not simulated workloads or interval certificates",
+    "damping_64": 0.049615131019467254,
+    "unit_coefficient_gap_64": 0.004408145115723713,
+    "endpoint_formula_gap_64": 0.004408145115723718,
+    "independent_quadrature_gap_64": 0.004408145115723708,
+    "continuous_service_coefficient_gap_64": 0.004396826397038261,
+    "continuous_service_coefficient_gap_128": 0.004338061955666791,
+    "finite_covariance_and_exponential_service_checks": "PASS"
+  },
+  "script_sha256": "2455360a2f69205ac633c05737ba365c6a4d892e2eba6bbef9e10937e71fda49",
+  "status": "ALL_FINITE_CHECKS_PASS",
+  "manuscript_sha256": "b94a7c946b0363b98c2f96e0bdfad6e10f48ebea1438f484fe4f6bf0517b9add",
+  "manuscript_structure": {
+    "unique_references": 50,
+    "all_references_cited": true,
+    "duplicate_labels": false,
+    "all_crossreference_labels_present": true
+  }
+}
