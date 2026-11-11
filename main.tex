@@ -781,16 +781,18 @@ The source and checker are supplied with the manuscript and are also available i
 \url{https://github.com/yspennstate/Ross-s-second-queueing-conjecture}.
 \end{appendix}
 
-\begin{acks}[Acknowledgments]
+\section*{Acknowledgments and funding}
+The author acknowledges support from the European Research Council under the European Union's Horizon Europe programme (grant agreement No.~101041711), the Simons Foundation through the Collaboration on the Mathematical and Scientific Foundations of Deep Learning, Heights Labs, Convex Nexus Capital, and Israel Science Foundation grants 2258/19 and 4101/25.
+
+This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}, a shared, persistent memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results, coordinate who works on what, and audit each other's work. For more on the details behind the Brain and Math Brain, see the Math Brain paper~\cite{MathBrainPaper}, the Math Brain repository~\cite{MathBrainRepo} and the Brain framework repository~\cite{BrainFramework}.
+\section*{Declaration of competing interest}
+The author holds equity interests in Heights Labs and Convex Nexus Capital.
+\section*{Declaration of generative AI and AI-assisted technologies}
 AI systems developed the mathematical arguments, calculations, verification code and initial manuscript. The author initiated and organized the project. AI research agents developed the cyclic Markov construction and the uniform workload remainder estimate. A separate Claude-based analysis rederived the expansion and its error bound and obtained the averaged-environment variance formulation. ChatGPT developed the bounded-service and positive-transition-rate extensions; a separate ChatGPT analysis derived the 64-state construction and its endpoint estimate. The present synthesis checked that construction, extended the expansion to finite second service moments, and developed the positive-autocovariance example, the repeated-reversal family and the service-law characterization. It also checked the Palm comparison and prepared the manuscript, bibliography and exact arithmetic tests. This work is part of Math Brain, a project aimed at improving AI systems' ability to solve open problems in mathematics.
 
 The author has reviewed the manuscript and its proofs and accepts full responsibility for the mathematical arguments, proofs and conclusions, including any remaining errors.
-\end{acks}
-\begin{funding}
-The author acknowledges support from the European Research Council under the European Union's Horizon Europe programme (grant agreement No.~101041711), the Simons Foundation through the Collaboration on the Mathematical and Scientific Foundations of Deep Learning, Heights Labs, Convex Nexus Capital, and Israel Science Foundation grants 2258/19 and 4101/25.
-\end{funding}
-\section*{Competing interests}
-The author holds equity interests in Heights Labs and Convex Nexus Capital.
+\section*{Code and data availability}
+The code and data for this paper are at \url{https://github.com/yspennstate/Ross-s-second-queueing-conjecture}. The paper is part of the Math Brain project, whose public repository is \url{https://github.com/yspennstate/math-brain-public}~\cite{MathBrainRepo}.
 \begin{supplement}
 \stitle{Exact arithmetic and finite regression checks}
 \sdescription{The files \texttt{verify.py} and \texttt{checks.json} reproduce the rational comparisons and finite insertion tests. They accompany the manuscript as supplementary material; the proofs do not depend on external data or a live service.}
@@ -1075,5 +1077,19 @@ U.~Yechiali and P.~Naor (1971).
 Queuing problems with heterogeneous arrivals and service.
 Oper. Res. \textbf{19} 722--734.
 \href{https://doi.org/10.1287/opre.19.3.722}{doi:10.1287/opre.19.3.722}.
+\bibitem{MathBrainRepo}
+Y.~Shmalo (2026).
+Math Brain: public snapshot, code and tests.
+\url{https://github.com/yspennstate/math-brain-public}.
+
+\bibitem{MathBrainPaper}
+Y.~Shmalo (2026).
+Math Brain: shared, auditable memory for multi-agent mathematical research.
+\url{https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24}.
+
+\bibitem{BrainFramework}
+Y.~Shmalo (2026).
+Brain Framework, public software repository.
+\url{https://github.com/yspennstate/brain-framework-public}.
 \end{thebibliography}
 \end{document}
